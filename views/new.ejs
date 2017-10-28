@@ -1,0 +1,22 @@
+<% include ./partials/top%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">New Blog</div>
+    <form class ="ui form clearfix" action="/blogs" method="POST">
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="blog[title]" placeholder="Blog title"></input>
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="blog[image]" placeholder="Blog image url"></input>
+        </div>
+        <div class="field">
+            <label>Blog content</label>
+            <textarea name="blog[body]"></textarea>
+        </div>
+        <button class="ui right floated button" type="submit">Submit</button>
+    </form>
+</div>
+
+<% include ./partials/bottom%>
