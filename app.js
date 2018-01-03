@@ -21,7 +21,7 @@ var mongooseOption = {
 };
 
 // 
-mongoose.connect("mongodb://hongtselin:Paul124741450@ds141766.mlab.com:39097/restful-blog-site", mongooseOption);
+mongoose.connect("mongodb://hongtselin:Paul124741450@ds239097.mlab.com:39097/restful-blog-site", mongooseOption);
 // mongoose.connect("mongodb://localhost/restful_blog_app", mongooseOption);
 
 // mongoose model settings
