@@ -19,8 +19,10 @@ var mongooseOption = {
     useMongoClient: true,
     keepAlive: true
 };
-mongoose.connect("mongodb://localhost/restful_blog_app", mongooseOption);
 
+// 
+mongoose.connect("mongodb://hongtselin:Paul124741450@ds141766.mlab.com:39097/restful-blog-site", mongooseOption);
+// mongoose.connect("mongodb://localhost/restful_blog_app", mongooseOption);
 
 // mongoose model settings
 var blogSchema = new mongoose.Schema({
@@ -32,20 +34,46 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-// Blog.create({
-//     title: "test blog",
-//     image: "https://unsplash.com/photos/o0RZkkL072U",
-//     body: "This is my first blog post"
-// });
+// clean data base
+Blog.remove({}, function(err){
+    if(err){
+            console.log(err);
+        } else {
+            console.log("Blogs removed!!!");
+        }
+});
 
-// Blog.update({ _id: "59c1e22dfca6910fa9433661" }, { $set: { image: "https://source.unsplash.com/rxPqkK0hp3c/400x225" } }, function(err) {
-//     if (err) {
-//         console.log(err);
-//     }
-//     else {
-//         console.log("data updated!!");
-//     }
-// });
+// create seed data
+data = [
+    {
+        title: "Test blog1",
+        image: "https://source.unsplash.com/rxPqkK0hp3c/400x225",
+        body: "This is my first blog post"
+    },
+    {
+        title: "Test blog2",
+        image: "https://source.unsplash.com/YWAVTqGnyjI/400*225",
+        body: "What a good day "
+    },
+    {
+        title: "Substring fox!",
+        image: "https://source.unsplash.com/7TGVEgcTKlY",
+        body: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+    }
+];
+
+data.forEach(function(seed){
+    Blog.create(seed, function(err, blog){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log("blog created!!");
+        }
+    });
+});
 
 ///////////// RESTful routes start
 
